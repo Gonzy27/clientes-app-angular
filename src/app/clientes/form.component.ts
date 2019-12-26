@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { ClienteService} from './cliente.service';
 import { Router , ActivatedRoute} from '@angular/router';
 import swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class FormComponent implements OnInit {
     this.clienteService.updateCliente(this.cliente).subscribe(
       cliente =>{
         this.router.navigate(['./clientes'])
-        swal.fire('Cliente Actualizado', `Cliente ${cliente.nombre} actualizado con éxito`, 'success');
+        swal.fire('Cliente Actualizado', `Cliente ${this.cliente.nombre} actualizado con éxito`, 'success');
       }
     )
   }
