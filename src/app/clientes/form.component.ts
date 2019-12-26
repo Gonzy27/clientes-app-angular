@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class FormComponent implements OnInit {
   private cliente: Cliente = new Cliente();
   private titulo: string = 'Crear cliente';
+  private errors: string[];
   constructor(private clienteService: ClienteService, 
     private router: Router, 
     private activatedRoute: ActivatedRoute) { }
@@ -35,6 +36,11 @@ export class FormComponent implements OnInit {
       cliente => {
         this.router.navigate(['./clientes'])
         swal.fire('Nuevo Cliente',  `Cliente ${this.cliente.nombre} creado con éxito!`,  'success');
+      },
+      err =>{
+        this.errors = err.error.errors as string[];
+        console.error('Código del error desde el backend: '+err.status);
+        console.error(err.error.errors);
       }
     )
   }
@@ -44,6 +50,11 @@ export class FormComponent implements OnInit {
       cliente =>{
         this.router.navigate(['./clientes'])
         swal.fire('Cliente Actualizado', `Cliente ${this.cliente.nombre} actualizado con éxito`, 'success');
+      },
+      err =>{
+        this.errors = err.error.errors as string[];
+        console.error('Código del error desde el backend: '+err.status);
+        console.error(err.error.errors);
       }
     )
   }
