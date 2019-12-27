@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="col-form-label col-sm-2">Apellido</label>
+                    <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido"  #apellido="ngModel"> <!--required-->
                         <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="col-form-label col-sm-2">Email</label>
+                    <label for="email" class="col-form-label col-sm-2">Email</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email"  email #email="ngModel"> <!--required-->
                         <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -46,6 +46,15 @@
                                 El email debe tener un formato válido
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="createAt" class="col-form-label col-sm-2">Fecha</label>
+                    <div class="col-sm-6">
+                        <input [matDatepicker]="miDatepicker" class="form-control" [(ngModel)]="cliente.createAt" name="createAt">
+                        <mat-datepicker-toggle [for]="miDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #miDatepicker></mat-datepicker>
                     </div>
                 </div>
 
